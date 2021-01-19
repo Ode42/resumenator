@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import "./cv-form.css";
 
 export default () => {
     const {register, handleSubmit, errors} = useForm();
@@ -15,7 +16,9 @@ export default () => {
 
         <div className="cv-form">
             <form onSubmit={handleSubmit(onSubmit)}>
-                <h3>Name</h3>
+
+            <div className="basic-info form-data">
+            <h3>Name</h3>
                 <input type="text" placeholder="John Doe" 
                 name="name" ref={register({required: "Name required"})} />
                 {errors.title && <p>{errors.name.message}</p>}
@@ -49,8 +52,29 @@ export default () => {
                 <input type="text" placeholder="john.doe@examplemail.com" name="email"
                 ref={register({required: "Email required"})} />
                 {errors.email && <p>{errors.email.message}</p>}
-                
+
+                <h3>Make sure every field is filled!</h3>
+                <button onClick={() => {
+                    const basicInfo = document.getElementsByClassName("basic-info") as HTMLCollectionOf<HTMLElement>;
+                    const profile = document.getElementsByClassName("profile") as HTMLCollectionOf<HTMLElement>;
+                    basicInfo[0].style.display = "none";
+                    profile[0].style.display = "flex";
+                }} >Next</button>
+            </div>
+
+
+
+            <div className="profile form-data">
+                Write a short description of yourself
+                <textarea name="description" id="profile-description"
+                rows={25} placeholder="My name is John Doe and I like strawberries"
+                ref={register({required: "Description is required"})} />
+
                 <input type="submit" />
+            </div>
+                
+
+                
             </form>
         </div>
         </>
