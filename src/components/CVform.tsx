@@ -1,7 +1,9 @@
 import { useForm } from "react-hook-form";
+import {useState} from "react";
 import "./cv-form.css";
 
 export default () => {
+    const [works, setWorks] = useState([]);
     const {register, handleSubmit, errors} = useForm();
 
     const onSubmit = data => {
@@ -18,6 +20,7 @@ export default () => {
             <form onSubmit={handleSubmit(onSubmit)}>
 
             <div className="basic-info form-data">
+            <h2>Basic information</h2>
             <h3>Name</h3>
                 <input type="text" placeholder="John Doe" 
                 name="name" ref={register({required: "Name required"})} />
@@ -69,10 +72,61 @@ export default () => {
                 <textarea name="description" id="profile-description"
                 rows={25} placeholder="My name is John Doe and I like strawberries"
                 ref={register({required: "Description is required"})} />
-
-                <input type="submit" />
+                <h3>Make sure every field is filled!</h3>
+                 <button onClick={() => {
+                    const workingExperience = document.getElementsByClassName("working-experience") as HTMLCollectionOf<HTMLElement>;
+                    const profile = document.getElementsByClassName("profile") as HTMLCollectionOf<HTMLElement>;
+                    profile[0].style.display = "none";
+                    workingExperience[0].style.display = "flex";
+                }} >Next</button>
             </div>
                 
+
+            <div className="working-experience form-data">
+
+                <h2>Working experience</h2>
+                {
+                    [0, 1, 2, 3, 4].map(i => {
+                        if (i === 0) {
+                            return (
+                                <div className="work" key={i}>
+                                    <h3>Company</h3>
+                                    <input type="text" name={"company" + i.toString()} placeholder="Example company Inc"
+                                    ref={register} />
+
+                                    <h3>Role</h3>
+                                    <input type="text" name={"role" + i.toString()} placeholder="Janitor" ref={register} />
+
+                                    <h3>What did you do?</h3>
+                                    <textarea rows={6}name={"working-experience" + i.toString()} placeholder="I cleaned up places" />
+
+                                    <h3>When did you work there?</h3>
+                                    <input type="text" name={"working-date" + i.toString()} placeholder="2014-" ref={register} />
+                                 </div>
+                            );
+                        } else {
+                            return (
+                                <div className="work" key={i}>
+                                <h3>Company</h3>
+                                <input type="text" name={"company" + i.toString()} placeholder=""
+                                ref={register} />
+
+                                <h3>Role</h3>
+                                <input type="text" name={"role" + i.toString()} placeholder="" ref={register} />
+
+                                <h3>What did you do?</h3>
+                                <textarea rows={6} name={"working-experience" + i.toString()} placeholder="" />
+
+                                <h3>When did you work there?</h3>
+                                <input type="text" name={"working-date" + i.toString()} placeholder="" ref={register} />
+                             </div>
+                            );
+                        }
+                        
+                    })
+                }
+                <input type="submit" />
+            </div>
 
                 
             </form>

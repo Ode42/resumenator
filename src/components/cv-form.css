@@ -15,3 +15,15 @@
 #profile-description {
     width: 90%;
 }
+
+.working-experience {
+    display: none;
+}
+
+
+.work {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+}
