@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import {useState} from "react";
+import dataStructure from './utils/dataStructure';
 import "./cv-form.css";
 
 export default () => {
@@ -7,7 +8,7 @@ export default () => {
     const {register, handleSubmit, errors} = useForm();
 
     const onSubmit = data => {
-        console.log(data);
+        console.log(dataStructure(data));
     }
 
     return (
@@ -143,7 +144,7 @@ export default () => {
                     [0, 1, 2, 3].map(i => {
                         if (i !== 0) {
                         return (
-                            <div className="school">
+                            <div className="school" key={i}>
                                 <h3>School</h3>
 
                                 <input type="text" name={"school" + i.toString()}
@@ -164,7 +165,7 @@ export default () => {
                         );
                         } else {
                             return (
-                                <div className="school">
+                                <div className="school" key={i}>
                                 <h3>School</h3>
 
                                 <input type="text" name={"school" + i.toString()}
@@ -187,9 +188,139 @@ export default () => {
                         }
                     })
                 }
-                <input type="submit" />
+                <button onClick={() => {
+                const languages = document.getElementsByClassName("languages") as HTMLCollectionOf<HTMLElement>;
+                const education = document.getElementsByClassName("education") as HTMLCollectionOf<HTMLElement>;
+                education[0].style.display = "none";
+                languages[0].style.display = "flex";
+                window.scroll(0, 0);
+                }}>Next</button>
             </div>
 
+            <div className="languages form-data">
+                <h2>Language knowledge</h2>
+                {
+                    [0, 1, 2, 3].map(i => {
+                        if (i !== 0 && i !== 1) {
+                            return (
+                                <div className="language" key={i}>
+                                    <h3>Language</h3>
+                                    <input type="text" name={"language" + i.toString()}
+                                    ref={register} />
+
+                                    <h3>Skill level</h3>
+                                    <input type="text" name={"language-skill" + i.toString()}
+                                    ref={register} />
+                                </div>
+                            );
+                        } else if (i === 0) {
+                            return (
+                                <div className="language" key={i} >
+                                    <h3>Language</h3>
+                                    <input type="text" name={"language" + i.toString()}
+                                    placeholder="English" ref={register} />
+
+                                    <h3>Skill level</h3>
+                                    <input type="text" name={"language-skill" + i.toString()}
+                                    placeholder="mother tongue" ref={register} />
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div className="language" key={i}>
+                                    <h3>Language</h3>
+                                    <input type="text" name={"language" + i.toString()}
+                                    placeholder="Finnish" ref={register} />
+
+                                    <h3>Skill level</h3>
+                                    <input type="text" name={"language-skill" + i.toString()}
+                                    placeholder="excellent" ref={register} />
+                                </div>
+                            );
+                        }
+                    })
+                }
+            <button onClick={() => {
+                const courses = document.getElementsByClassName("courses") as HTMLCollectionOf<HTMLElement>;
+                const languages = document.getElementsByClassName("languages") as HTMLCollectionOf<HTMLElement>;
+                languages[0].style.display = "none";
+                courses[0].style.display = "flex";
+                window.scroll(0, 0);
+                }}>Next</button>
+            </div>
+            <div className="courses form-data">
+                <h2>Certifications</h2>
+                {
+                [0, 1, 2, 3, 4].map(i => {
+                    if (i !== 0) {
+                        return (
+                            <div className="course" key={i}>
+                                <h3>Course</h3>
+                                <input type="text" name={"course" + i.toString()}
+                                ref={register} />
+
+                                <h3>Graduate date</h3>
+                                <input type="text" name={"course-date" + i.toString()}
+                                ref={register} />
+                            </div>
+                        );
+                    } else {
+                        <div className="course" key={i}>
+                                <h3>Certification</h3>
+                                <input type="text" name={"course" + i.toString()}
+                                placeholder="hygiene proficiency certification" ref={register} />
+
+                                <h3>Graduate date</h3>
+                                <input type="text" name={"course-date" + i.toString()}
+                                placeholder="4.4.1999" ref={register} />
+                            </div>
+                    }
+                })
+                }
+            <button onClick={() => {
+                const references = document.getElementsByClassName("references") as HTMLCollectionOf<HTMLElement>;
+                const courses = document.getElementsByClassName("courses") as HTMLCollectionOf<HTMLElement>;
+                courses[0].style.display = "none";
+                references[0].style.display = "flex";
+                window.scroll(0, 0);
+                }}>Next</button>
+            </div>
+
+
+            <div className="references form-data">
+                <h2>References</h2>
+                {
+                    [0, 1, 2, 3].map(i => {
+                        if (i !== 0) {
+                            return (
+                                <div className="reference" key={i}>
+                                    <h3>Reference</h3>
+                                    <input type="text" name={"reference" + i.toString()}
+                                    ref={register} />
+
+                                    <h3>Contact details</h3>
+                                    <input type="text" name={"reference-contact" + i.toString()}
+                                    ref={register} />
+                                </div>
+                            );
+                        } else {
+                            return (
+                                <div className="reference" key={i}>
+                                    <h3>Reference</h3>
+                                    <input type="text" name={"reference" + i.toString()}
+                                    placeholder="John Doe sr." ref={register} />
+
+                                    <h3>Contact details</h3>
+                                    <input type="text" name={"reference-contact" + i.toString()}
+                                    placeholder="Phone: 01 234 2132, email: john.doe@inc.com" ref={register} />
+                                </div>
+                            );
+                        }
+                    })
+                }
+                
+                <input type="submit" />
+            </div>
                 
             </form>
         </div>
