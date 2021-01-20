@@ -62,6 +62,7 @@ export default () => {
                     const profile = document.getElementsByClassName("profile") as HTMLCollectionOf<HTMLElement>;
                     basicInfo[0].style.display = "none";
                     profile[0].style.display = "flex";
+                    window.scroll(0, 0);
                 }} >Next</button>
             </div>
 
@@ -78,6 +79,7 @@ export default () => {
                     const profile = document.getElementsByClassName("profile") as HTMLCollectionOf<HTMLElement>;
                     profile[0].style.display = "none";
                     workingExperience[0].style.display = "flex";
+                    window.scroll(0, 0);
                 }} >Next</button>
             </div>
                 
@@ -125,12 +127,72 @@ export default () => {
                         
                     })
                 }
+                <button onClick={() => {
+                const education = document.getElementsByClassName("education") as HTMLCollectionOf<HTMLElement>;
+                const workingExperience = document.getElementsByClassName("working-experience") as HTMLCollectionOf<HTMLElement>;
+                workingExperience[0].style.display = "none";
+                education[0].style.display = "flex";
+                window.scroll(0, 0);
+                }}>Next</button>
+            </div>
+
+
+            <div className="education form-data">
+                <h2>Education</h2>
+                {
+                    [0, 1, 2, 3].map(i => {
+                        if (i !== 0) {
+                        return (
+                            <div className="school">
+                                <h3>School</h3>
+
+                                <input type="text" name={"school" + i.toString()}
+                                placeholder="" ref={register} />
+
+                                <h3>Degree</h3>
+                                <input type="text" name={"degree" + i.toString()}
+                                placeholder="" ref={register} />
+
+                                <h3>What did you study?</h3>
+                                <textarea rows={6} name={"orientation" + i.toString()}
+                                placeholder="" ref={register} />
+
+                                <h3>When did you study there?</h3>
+                                <input type="text" name={"study-date" + i.toString()}
+                                ref={register} />
+                            </div>
+                        );
+                        } else {
+                            return (
+                                <div className="school">
+                                <h3>School</h3>
+
+                                <input type="text" name={"school" + i.toString()}
+                                placeholder="Harvard University" ref={register} />
+
+                                <h3>Degree</h3>
+                                <input type="text" name={"degree" + i.toString()}
+                                placeholder="doctor" ref={register} />
+
+                                <h3>What did you study?</h3>
+                                <textarea rows={6} name={"orientation" + i.toString()}
+                                placeholder="I studied biology" ref={register} />
+
+                                <h3>When did you study there?</h3>
+                                <input type="text" name={"study-date" + i.toString()}
+                                placeholder="1999-2007" ref={register} />
+                                </div>
+                            );
+                            
+                        }
+                    })
+                }
                 <input type="submit" />
             </div>
 
                 
             </form>
         </div>
-        </>
+    </>
     );
 }
