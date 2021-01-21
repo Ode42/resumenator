@@ -2,13 +2,15 @@ import { useForm } from "react-hook-form";
 import {useState} from "react";
 import dataStructure from './utils/dataStructure';
 import "./cv-form.css";
+import unformattedData from './utils/interfaces/unformattedData';
 
 export default () => {
-    const [works, setWorks] = useState([]);
+    const [cvData, setCvData] = useState({});
     const {register, handleSubmit, errors} = useForm();
 
-    const onSubmit = data => {
-        console.log(dataStructure(data));
+    const onSubmit = (data:unformattedData) => {
+        setCvData(dataStructure(data));
+        console.log(cvData);
     }
 
     return (
@@ -71,7 +73,7 @@ export default () => {
 
             <div className="profile form-data">
                 Write a short description of yourself
-                <textarea name="description" id="profile-description"
+                <textarea name="description" id="profile-Description"
                 rows={25} placeholder="My name is John Doe and I like strawberries"
                 ref={register({required: "Description is required"})} />
                 <h3>Make sure every field is filled!</h3>
@@ -101,10 +103,10 @@ export default () => {
                                     <input type="text" name={"role" + i.toString()} placeholder="Janitor" ref={register} />
 
                                     <h3>What did you do?</h3>
-                                    <textarea rows={6}name={"working-experience" + i.toString()} placeholder="I cleaned up places" />
+                                    <textarea rows={6}name={"workingExperience" + i.toString()} placeholder="I cleaned up places" ref={register} />
 
                                     <h3>When did you work there?</h3>
-                                    <input type="text" name={"working-date" + i.toString()} placeholder="2014-" ref={register} />
+                                    <input type="text" name={"workingDate" + i.toString()} placeholder="2014-" ref={register} />
                                  </div>
                             );
                         } else {
@@ -118,10 +120,10 @@ export default () => {
                                 <input type="text" name={"role" + i.toString()} placeholder="" ref={register} />
 
                                 <h3>What did you do?</h3>
-                                <textarea rows={6} name={"working-experience" + i.toString()} placeholder="" />
+                                <textarea rows={6} name={"workingExperience" + i.toString()} placeholder="" ref={register} />
 
                                 <h3>When did you work there?</h3>
-                                <input type="text" name={"working-date" + i.toString()} placeholder="" ref={register} />
+                                <input type="text" name={"workingDate" + i.toString()} placeholder="" ref={register} />
                              </div>
                             );
                         }
@@ -159,7 +161,7 @@ export default () => {
                                 placeholder="" ref={register} />
 
                                 <h3>When did you study there?</h3>
-                                <input type="text" name={"study-date" + i.toString()}
+                                <input type="text" name={"studyDate" + i.toString()}
                                 ref={register} />
                             </div>
                         );
@@ -180,7 +182,7 @@ export default () => {
                                 placeholder="I studied biology" ref={register} />
 
                                 <h3>When did you study there?</h3>
-                                <input type="text" name={"study-date" + i.toString()}
+                                <input type="text" name={"studyDate" + i.toString()}
                                 placeholder="1999-2007" ref={register} />
                                 </div>
                             );
@@ -209,7 +211,7 @@ export default () => {
                                     ref={register} />
 
                                     <h3>Skill level</h3>
-                                    <input type="text" name={"language-skill" + i.toString()}
+                                    <input type="text" name={"languageSkill" + i.toString()}
                                     ref={register} />
                                 </div>
                             );
@@ -221,7 +223,7 @@ export default () => {
                                     placeholder="English" ref={register} />
 
                                     <h3>Skill level</h3>
-                                    <input type="text" name={"language-skill" + i.toString()}
+                                    <input type="text" name={"languageSkill" + i.toString()}
                                     placeholder="mother tongue" ref={register} />
                                 </div>
                             );
@@ -233,7 +235,7 @@ export default () => {
                                     placeholder="Finnish" ref={register} />
 
                                     <h3>Skill level</h3>
-                                    <input type="text" name={"language-skill" + i.toString()}
+                                    <input type="text" name={"languageSkill" + i.toString()}
                                     placeholder="excellent" ref={register} />
                                 </div>
                             );
@@ -260,7 +262,7 @@ export default () => {
                                 ref={register} />
 
                                 <h3>Graduate date</h3>
-                                <input type="text" name={"course-date" + i.toString()}
+                                <input type="text" name={"courseDate" + i.toString()}
                                 ref={register} />
                             </div>
                         );
@@ -271,7 +273,7 @@ export default () => {
                                 placeholder="hygiene proficiency certification" ref={register} />
 
                                 <h3>Graduate date</h3>
-                                <input type="text" name={"course-date" + i.toString()}
+                                <input type="text" name={"courseDate" + i.toString()}
                                 placeholder="4.4.1999" ref={register} />
                             </div>
                     }
@@ -299,7 +301,7 @@ export default () => {
                                     ref={register} />
 
                                     <h3>Contact details</h3>
-                                    <input type="text" name={"reference-contact" + i.toString()}
+                                    <input type="text" name={"referenceContact" + i.toString()}
                                     ref={register} />
                                 </div>
                             );
@@ -311,7 +313,7 @@ export default () => {
                                     placeholder="John Doe sr." ref={register} />
 
                                     <h3>Contact details</h3>
-                                    <input type="text" name={"reference-contact" + i.toString()}
+                                    <input type="text" name={"referenceContact" + i.toString()}
                                     placeholder="Phone: 01 234 2132, email: john.doe@inc.com" ref={register} />
                                 </div>
                             );
