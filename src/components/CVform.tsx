@@ -3,14 +3,14 @@ import {useState} from "react";
 import dataStructure from './utils/dataStructure';
 import "./cv-form.css";
 import unformattedData from './utils/interfaces/unformattedData';
+import {Link} from 'react-router-dom';
 
-export default () => {
+export default (props:any) => {
     const [cvData, setCvData] = useState({});
     const {register, handleSubmit, errors} = useForm();
 
     const onSubmit = (data:unformattedData) => {
         setCvData(dataStructure(data));
-        console.log(cvData);
     }
 
     return (
@@ -321,7 +321,7 @@ export default () => {
                     })
                 }
                 
-                <input type="submit" />
+                <Link to={{pathname: "/cv", cvData:cvData }}><button type="submit">Lähetä</button></Link>
             </div>
                 
             </form>
