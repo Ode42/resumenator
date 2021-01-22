@@ -1,24 +1,150 @@
-import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
-
+import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
+import React, {useState} from 'react';
 // Create styles
+
+
+  const demodata = {
+    basicInfo: {
+      name: "Otso Kurkela",
+      dateofbirth: "21.8.2005",
+      address: "katu 1",
+      city: "Hyvinkää",
+      postcode: "05800",
+      telephone: "04 0123 4567",
+      email: "otso.kurkelax@gmail.com"
+  },
+  profile: {
+      description: "Olen 15-vuotias koululaienn Hyvinkäältä. Vapaa-ajalla kalastan ja luen kirjoja. Harrastan aktiivisesti partiota. Olen oma-aloitteinen ja reipas, ja siksi jokaisen tulisi palkata minut."
+  },
+  workingExperience: [
+      {
+          company0: "Western systems",
+          role0: "ohjelmistoharjoittelija",
+          workingExperience0: "Harjoittelin ohjelmistoja",
+          workingDate0: "21-27.9.2020"
+      },
+      {
+          company1: "Ode42 OY",
+          role1: "software developer",
+          workingExperience1: "I did things",
+          workingDate1: "21.9.2020"
+      },
+      {
+          company2: "",
+          role2: "",
+          workingExperience2: "",
+          workingDate2: ""
+      },
+      {
+          company3: "",
+          role3: "",
+          workingExperience3: "",
+          workingDate3: ""
+      }
+  ],
+  education: [
+      {
+      school0: "Tapainlinann koulu",
+      degree0: "peruskoulu",
+      orientaton0: "kaikenlaisia aineita",
+      studyDate0: "2013-2021"
+      },
+      {
+          school1: "Hyvinkään lukio",
+          degree1: "ylioppilas",
+          orientaton1: "monia eri laineita",
+          studyDate1: "2021-2024"
+      },
+      {
+          school2: "Helsingin yliopsito",
+          degree2: "maisteri",
+          orientaton2: "biologia",
+          studyDate2: "2025-2030"
+      },
+      {
+          school3: "",
+          degree3: "",
+          orientaton3: "",
+          studyDate3: ""
+      },
+  ],
+  languages: [
+      {
+          language0: "Suomi",
+          languageSkill0: "Äidinkieli"
+      },
+      {
+          language1: "Englanti",
+          languageSkill1: "hyvä"
+      },
+      {
+          language2: "ruotsi",
+          languageSkill2: "oman alan sanasto"
+      },
+      {
+          language3: "",
+          languageSkill3: ""
+      },
+  ],
+  courses: [
+  {
+      course0: "Hygieniapassi",
+      courseDate0: "2018"
+  },
+  {
+      course1: "Fullstack open",
+      courseDate1: "19.1.2020"
+  },
+  {
+      course2: "",
+      courseDate2: ""
+  },
+  {
+      course3: "",
+      courseDate3: ""
+  },
+],
+references: [
+  {
+      reference0: "Otto Myöhänen, Western systems",
+      referenceContact0: "xxx@gmnail.com"
+  },
+  {
+      reference1: "",
+      referenceContact1: ""
+  },
+  {
+      reference2: "",
+      referenceContact2: ""
+  },
+  {
+      reference3: "",
+      referenceContact3: ""
+  },
+]
+}
 const styles = StyleSheet.create({
     
-    page: {
-        fontSize: 20,
-        width: 1000
-    }
-  });
-
+  page: {
+      fontSize: 20,
+      width: 100,
+  },
   
-  export default () => {
+});
+  
+  export default (props:any) => {
+    const [cvData, setCvData] = useState(demodata);
       return (
-        <Document title="Hienopdf">
+        
+        <Document title={cvData.basicInfo.name + "_resume"}>
         <Page size="A4" style={styles.page}>
           <View style={styles.section}>
-            <Text>Section #1</Text>
+            <Text>{cvData.basicInfo.name}</Text>
+            <Text>Resume</Text>
           </View>
         </Page>
       </Document>
+      
       );
   }
 
