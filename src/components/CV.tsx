@@ -252,6 +252,28 @@ const styles = StyleSheet.create({
                   }
               </View>
           </View>
+          <View style={styles.boxArea}>
+              <Text style={styles.title}>LANGUAGE KNOWLEDGE</Text>
+              <View style={styles.singleBox}>
+                  {
+                      cvData.languages.map((languageItem, i:number) => {
+                          let language:string = "language" + i.toString();
+                          let languageSkill:string = "languageSkill" + i.toString();
+
+                          if (languageItem[language] !== "") {
+                              return (
+                                  <View style={styles.unit} key={i}>
+                                      <Text style={styles.unitDate}>{languageItem[language]}</Text>
+                                      <View style={styles.unitInfo}>
+                                          <Text>{languageItem[languageSkill]}</Text>
+                                          </View>
+                                      </View>
+                              );
+                          }
+                      })
+                  }
+              </View>
+          </View>
         </Page> 
       </Document>
       
