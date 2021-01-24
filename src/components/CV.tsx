@@ -182,151 +182,167 @@ const styles = StyleSheet.create({
   
   export default (props) => {
     const [cvData, setCvData] = useState(props.cvData)
-    useEffect(() => {
+        useEffect(() => {
         setCvData(props.cvData)
         console.log(cvData)
-    }, [])
-    
-      return (
-          <Document></Document> /*
-        <Document title={cvData.basicInfo.name + "_resume"}>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.header}>
-            <Text style={styles.title}>{cvData.basicInfo.name}</Text>
-            <Text>RESUME</Text>
-          </View>
-          <View style={styles.basicInfo}>
-            <Text>Born {cvData.basicInfo.dateofbirth}</Text>
-            <Text>{cvData.basicInfo.address}</Text>
-            <Text>{cvData.basicInfo.postcode} {cvData.basicInfo.city}</Text>
-            <Text>{cvData.basicInfo.telephone}</Text>
-            <Text>{cvData.basicInfo.email}</Text>
-          </View>
-          <View style={styles.hr}></View>
-          <View style={styles.textArea}>
-              <Text style={styles.title}>DESCRIPTION</Text>
-              <Text style={styles.descriptionText}>{cvData.profile.description}</Text>
-          </View>
-          <View style={styles.boxArea}>
-              <Text style={styles.title}>WORKING EXPERIENCE</Text>
-              <View style={styles.singleBox}>
-              {
-                  cvData.workingExperience.map((work, i:number) => {
-                      let company:string = "company" + i.toString();
-                      let workingExperience:string = "workingExperience" + i.toString();
-                      let role:string = "role" + i.toString();
-                      let workingDate:string = "workingDate" + i.toString();
-                      if (work[company] !== "") {
-                          return (
-                            <View style={styles.unit} key={i}>
-                                <Text style={styles.unitDate}>{work[workingDate]}</Text>
-                                <View style={styles.unitInfo}>
-                                    <Text>{work[company]}</Text>
-                                    <Text>{work[role]}</Text>
-                                    <Text>{work[workingExperience]}</Text>
-                                </View>
-                            </View>
-                          );
-                      }
-                  })
-              }
-              </View>
-          </View>
-          <View style={styles.boxArea}>
-              <Text style={styles.title}>EDUCATION</Text>
-              <View style={styles.singleBox}>
-                  {
-                      cvData.education.map((schoolItem, i:number) => {
-                          let school:string = "school" + i.toString();
-                          let degree:string = "degree" + i.toString();
-                          let orientaton:string = "orientation" + i.toString();
-                          let studyDate:string = "studyDate" + i.toString();
-                          if (schoolItem[school] !== "") {
-                              return (
-                                  <View style={styles.unit} key={i}>
-                                      <Text style={styles.unitDate}>{schoolItem[studyDate]}</Text>
-                                      <View style={styles.unitInfo}>
-                                          <Text>{schoolItem[school]}</Text>
-                                          <Text>{schoolItem[degree]}</Text>
-                                          <Text>{schoolItem[orientaton]}</Text>
-                                          </View>
-                                      </View>
-                              );
-                          }
-                      })
-                  }
-              </View>
-          </View>
-          <View style={styles.boxArea}>
-              <Text style={styles.title}>LANGUAGE KNOWLEDGE</Text>
-              <View style={styles.singleBox}>
-                  {
-                      cvData.languages.map((languageItem, i:number) => {
-                          let language:string = "language" + i.toString();
-                          let languageSkill:string = "languageSkill" + i.toString();
+    }, [props.cvData])
 
-                          if (languageItem[language] !== "") {
-                              return (
-                                  <View style={styles.unit} key={i}>
-                                      <Text style={styles.unitDate}>{languageItem[language]}</Text>
-                                      <View style={styles.unitInfo}>
-                                          <Text>{languageItem[languageSkill]}</Text>
-                                          </View>
-                                      </View>
-                              );
-                          }
-                      })
-                  }
+        
+
+
+      if (typeof(cvData) === 'undefined') {
+        return (
+            <Document>
+                <Page>
+                    <View>
+                        <Text>Not defined</Text>
+                    </View>
+                </Page>
+            </Document>
+        );
+      } else {
+          return (
+              <>
+            <Document title={cvData.basicInfo.name + "_resume"}>
+            <Page size="A4" style={styles.page}>
+              <View style={styles.header}>
+                <Text style={styles.title}>{cvData.basicInfo.name}</Text>
+                <Text>RESUME</Text>
               </View>
-          </View>
-          <View style={styles.boxArea}>
-              <Text style={styles.title}>CERTIFICATES</Text>
-              <View style={styles.singleBox}>
+              <View style={styles.basicInfo}>
+                <Text>Born {cvData.basicInfo.dateofbirth}</Text>
+                <Text>{cvData.basicInfo.address}</Text>
+                <Text>{cvData.basicInfo.postcode} {cvData.basicInfo.city}</Text>
+                <Text>{cvData.basicInfo.telephone}</Text>
+                <Text>{cvData.basicInfo.email}</Text>
+              </View>
+              <View style={styles.hr}></View>
+              <View style={styles.textArea}>
+                  <Text style={styles.title}>DESCRIPTION</Text>
+                  <Text style={styles.descriptionText}>{cvData.profile.description}</Text>
+              </View>
+              <View style={styles.boxArea}>
+                  <Text style={styles.title}>WORKING EXPERIENCE</Text>
+                  <View style={styles.singleBox}>
                   {
-                      cvData.courses.map((certificate, i:number) => {
-                          let course:string = "course" + i.toString();
-                          let courseDate:string = "courseDate" + i.toString();
-                          
-                          if (certificate[course] !== "") {
+                      cvData.workingExperience.map((work, i:number) => {
+                          let company:string = "company" + i.toString();
+                          let workingExperience:string = "workingExperience" + i.toString();
+                          let role:string = "role" + i.toString();
+                          let workingDate:string = "workingDate" + i.toString();
+                          if (work[company] !== "") {
                               return (
-                                  <View style={styles.unit} key={i}>
-                                      <Text style={styles.unitDate}>{certificate[course]}</Text>
-                                      <View style={styles.unitInfo}>
-                                          <Text>{certificate[courseDate]}</Text>
-                                          </View>
-                                      </View>
+                                <View style={styles.unit} key={i}>
+                                    <Text style={styles.unitDate}>{work[workingDate]}</Text>
+                                    <View style={styles.unitInfo}>
+                                        <Text>{work[company]}</Text>
+                                        <Text>{work[role]}</Text>
+                                        <Text>{work[workingExperience]}</Text>
+                                    </View>
+                                </View>
                               );
                           }
                       })
                   }
+                  </View>
               </View>
-          </View>
-          <View style={styles.boxArea}>
-              <Text style={styles.title}>REFERENCES</Text>
-              <View style={styles.singleBox}>
-                  {
-                      cvData.references.map((referenceItem, i:number) => {
-                          let reference:string = "reference" + i.toString();
-                          let referenceContact:string = "referenceContact" + i.toString();
-                          
-                          if (referenceItem[reference] !== "") {
-                              return (
-                                  <View style={styles.unit} key={i}>
-                                      <Text style={styles.unitDate}></Text>
-                                      <View style={styles.unitInfo}>
-                                          <Text>{referenceItem[reference]}</Text>
-                                          <Text>{referenceItem[referenceContact]}</Text>
+              <View style={styles.boxArea}>
+                  <Text style={styles.title}>EDUCATION</Text>
+                  <View style={styles.singleBox}>
+                      {
+                          cvData.education.map((schoolItem, i:number) => {
+                              let school:string = "school" + i.toString();
+                              let degree:string = "degree" + i.toString();
+                              let orientaton:string = "orientation" + i.toString();
+                              let studyDate:string = "studyDate" + i.toString();
+                              if (schoolItem[school] !== "") {
+                                  return (
+                                      <View style={styles.unit} key={i}>
+                                          <Text style={styles.unitDate}>{schoolItem[studyDate]}</Text>
+                                          <View style={styles.unitInfo}>
+                                              <Text>{schoolItem[school]}</Text>
+                                              <Text>{schoolItem[degree]}</Text>
+                                              <Text>{schoolItem[orientaton]}</Text>
+                                              </View>
                                           </View>
-                                      </View>
-                              );
-                          }
-                      })
-                  }
+                                  );
+                              }
+                          })
+                      }
+                  </View>
               </View>
-          </View>
-        </Page> 
-      </Document> */
-      );
+              <View style={styles.boxArea}>
+                  <Text style={styles.title}>LANGUAGE KNOWLEDGE</Text>
+                  <View style={styles.singleBox}>
+                      {
+                          cvData.languages.map((languageItem, i:number) => {
+                              let language:string = "language" + i.toString();
+                              let languageSkill:string = "languageSkill" + i.toString() ;
+  
+                              if (languageItem[language] !== "") {
+                                  return (
+                                      <View style={styles.unit} key={i}>
+                                          <Text style={styles.unitDate}>{languageItem[language]}</Text>
+                                          <View style={styles.unitInfo}>
+                                              <Text>{languageItem[languageSkill]}</Text>
+                                              </View>
+                                          </View>
+                                  );
+                              }
+                          })
+                      }
+                  </View>
+              </View>
+              <View style={styles.boxArea}>
+                  <Text style={styles.title}>CERTIFICATES</Text>
+                  <View style={styles.singleBox}>
+                      {
+                          cvData.courses.map((certificate, i:number) => {
+                              let course:string = "course" + i.toString();
+                              let courseDate:string = "courseDate" + i.toString();
+  
+                              if (certificate[course] !== "") {
+                                  return (
+                                      <View style={styles.unit} key={i}>
+                                          <Text style={styles.unitDate}>{certificate[course]}</Text>
+                                          <View style={styles.unitInfo}>
+                                              <Text>{certificate[courseDate]}</Text>
+                                              </View>
+                                          </View>
+                                  );
+                              }
+                          })
+                      }
+                  </View>
+              </View>
+              <View style={styles.boxArea}>
+                  <Text style={styles.title}>REFERENCES</Text>
+                  <View style={styles.singleBox}>
+                      {
+                          cvData.references.map((referenceItem, i:number) => {
+                              let reference:string = "reference" + i.toString();
+                              let referenceContact:string = "referenceContact" + i.toString();
+  
+                              if (referenceItem[reference] !== "") {
+                                  return (
+                                      <View style={styles.unit} key={i}>
+                                          <Text style={styles.unitDate}></Text>
+                                          <View style={styles.unitInfo}>
+                                              <Text>{referenceItem[reference]}</Text>
+                                              <Text>{referenceItem[referenceContact]}</Text>
+                                              </View>
+                                          </View>
+                                  );
+                              }
+                          })
+                      }
+                  </View>
+              </View>
+            </Page> 
+          </Document>
+          </>
+          );
+      }
       
   }
 

@@ -74,7 +74,7 @@ export default (props:any) => {
             <div className="profile form-data">
                 Write a short description of yourself
                 <textarea name="description" id="profile-Description"
-                rows={25} placeholder="My name is John Doe and I like strawberries"
+                rows={25} cols={45} placeholder="My name is John Doe and I like strawberries"
                 ref={register({required: "Description is required"})} />
                 <h3>Make sure every field is filled!</h3>
                  <button onClick={() => {
@@ -321,8 +321,7 @@ export default (props:any) => {
                     })
                 }
                 
-                <input type="submit"/>
-                <Link to={{pathname: "/cv", cvData:cvData }}>Next</Link>
+                <button type="submit"><Link to={{pathname: "/cv", cvData:cvData }}>Next</Link></button>
             </div>
                 
             </form>
