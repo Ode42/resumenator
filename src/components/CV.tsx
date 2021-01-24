@@ -1,5 +1,6 @@
 import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
 import React, {useState} from 'react';
+import { setSyntheticTrailingComments, skipPartiallyEmittedExpressions } from 'typescript';
 // Create styles
 
 
@@ -126,23 +127,132 @@ references: [
 const styles = StyleSheet.create({
     
   page: {
-      fontSize: 20,
-      width: 100,
+      fontSize: 15,
+      backgroundColor: '#ffffff',
+      padding: 18
   },
+  title: {
+      fontSize: 20,
+      width: '25%'
+  },
+  header: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: '#ffffff'
+  },
+  hr: {
+    width: '100%',
+    height: 2,
+    backgroundColor: '#000000',
+    marginTop: 5,
+    marginBottom: 5
+  },
+  textArea: {
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+  },
+  descriptionText: {
+      width: '70%'
+  },
+  boxArea: {
+      flexDirection: 'column',
+      backgroundColor: '#fff'
+  },
+  singleBox: {
+      width: '100%'
+  },
+  unit: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      backgroundColor: '#fff',
+      marginTop: 10,
+  },
+  unitDate: {
+      width: '30%',
+      backgroundColor: '#fff'
+  },
+  unitInfo: {
+      width: '70%',
+      backgroundColor: '#fff'
+  }
   
 });
   
   export default (props:any) => {
     const [cvData, setCvData] = useState(demodata);
+    
       return (
-        
         <Document title={cvData.basicInfo.name + "_resume"}>
         <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
-            <Text>{cvData.basicInfo.name}</Text>
-            <Text>Resume</Text>
+          <View style={styles.header}>
+            <Text style={styles.title}>{cvData.basicInfo.name}</Text>
+            <Text>RESUME</Text>
           </View>
-        </Page>
+          <View style={styles.basicInfo}>
+            <Text>Born {cvData.basicInfo.dateofbirth}</Text>
+            <Text>{cvData.basicInfo.address}</Text>
+            <Text>{cvData.basicInfo.postcode} {cvData.basicInfo.city}</Text>
+            <Text>{cvData.basicInfo.telephone}</Text>
+            <Text>{cvData.basicInfo.email}</Text>
+          </View>
+          <View style={styles.hr}></View>
+          <View style={styles.textArea}>
+              <Text style={styles.title}>DESCRIPTION</Text>
+              <Text style={styles.descriptionText}>{cvData.profile.description}</Text>
+          </View>
+          <View style={styles.boxArea}>
+              <Text style={styles.title}>WORKING EXPERIENCE</Text>
+              <View style={styles.singleBox}>
+              {
+                  cvData.workingExperience.map((work, i:number) => {
+                      let company:string = "company" + i.toString();
+                      let workingExperience:string = "workingExperience" + i.toString();
+                      let role:string = "role" + i.toString();
+                      let workingDate:string = "workingDate" + i.toString();
+                      if (work[company] !== "") {
+                          return (
+                            <View style={styles.unit} key={i}>
+                                <Text style={styles.unitDate}>{work[workingDate]}</Text>
+                                <View style={styles.unitInfo}>
+                                    <Text>{work[company]}</Text>
+                                    <Text>{work[role]}</Text>
+                                    <Text>{work[workingExperience]}</Text>
+                                </View>
+                            </View>
+                          );
+                      }
+                  })
+              }
+              </View>
+          </View>
+          <View style={styles.boxArea}>
+              <Text style={styles.title}>EDUCATION</Text>
+              <View style={styles.singleBox}>
+                  {
+                      cvData.education.map((schoolItem, i:number) => {
+                          let school:string = "school" + i.toString();
+                          let degree:string = "degree" + i.toString();
+                          let orientaton:string = "orientation" + i.toString();
+                          let studyDate:string = "studyDate" + i.toString();
+                          if (schoolItem[school] !== "") {
+                              return (
+                                  <View style={styles.unit} key={i}>
+                                      <Text style={styles.unitDate}>{schoolItem[studyDate]}</Text>
+                                      <View style={styles.unitInfo}>
+                                          <Text>{schoolItem[school]}</Text>
+                                          <Text>{schoolItem[degree]}</Text>
+                                          <Text>{schoolItem[orientaton]}</Text>
+                                          </View>
+                                      </View>
+                              );
+                          }
+                      })
+                  }
+              </View>
+          </View>
+        </Page> 
       </Document>
       
       );
