@@ -26,6 +26,9 @@
     margin-bottom: 25px;
     padding: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+    background-color: #fff;
+    color: #000;
+    width: 80%;
 }
 
 .education {
@@ -33,9 +36,13 @@
 }
 
 .school {
+    color: #000;
+    width: 80%;
+
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 10px;
+    background: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);   
 }
 
@@ -43,10 +50,13 @@
     display: none;
 }
 
-.language {
+.language {    color: #000;
+    width: 80%;
+
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 10px;
+    background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);   
 }
 
@@ -55,9 +65,13 @@
 }
 
 .course {
+    color: #000;
+    width: 80%;
+
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 10px;
+    background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);   
 }
 
@@ -66,8 +80,12 @@
 }
 
 .reference {
+    color: #000;
+    width: 80%;
+
     margin-top: 25px;
     margin-bottom: 25px;
     padding: 10px;
+    background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);   
 }
