@@ -4,6 +4,6 @@
 ### TypeScript 4.1.3
 ### react-router-dom 
 ## ToDo
-### [] Get CV data
-### [] pass data and write it to pdf
-### [] style
+### [x] Get CV data
+### [x] pass data and write it to pdf
+### [x] style
