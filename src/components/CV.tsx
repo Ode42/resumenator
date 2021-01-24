@@ -1,5 +1,5 @@
 import { Page, Text, View, Document, StyleSheet, PDFViewer } from '@react-pdf/renderer';
-import React, {useState} from 'react';
+import React, {useState, useEffect } from 'react';
 import { setSyntheticTrailingComments, skipPartiallyEmittedExpressions } from 'typescript';
 // Create styles
 
@@ -180,10 +180,15 @@ const styles = StyleSheet.create({
   
 });
   
-  export default (props:any) => {
-    const [cvData, setCvData] = useState(demodata);
+  export default (props) => {
+    const [cvData, setCvData] = useState(props.cvData)
+    useEffect(() => {
+        setCvData(props.cvData)
+        console.log(cvData)
+    }, [])
     
       return (
+          <Document></Document> /*
         <Document title={cvData.basicInfo.name + "_resume"}>
         <Page size="A4" style={styles.page}>
           <View style={styles.header}>
@@ -274,9 +279,54 @@ const styles = StyleSheet.create({
                   }
               </View>
           </View>
+          <View style={styles.boxArea}>
+              <Text style={styles.title}>CERTIFICATES</Text>
+              <View style={styles.singleBox}>
+                  {
+                      cvData.courses.map((certificate, i:number) => {
+                          let course:string = "course" + i.toString();
+                          let courseDate:string = "courseDate" + i.toString();
+                          
+                          if (certificate[course] !== "") {
+                              return (
+                                  <View style={styles.unit} key={i}>
+                                      <Text style={styles.unitDate}>{certificate[course]}</Text>
+                                      <View style={styles.unitInfo}>
+                                          <Text>{certificate[courseDate]}</Text>
+                                          </View>
+                                      </View>
+                              );
+                          }
+                      })
+                  }
+              </View>
+          </View>
+          <View style={styles.boxArea}>
+              <Text style={styles.title}>REFERENCES</Text>
+              <View style={styles.singleBox}>
+                  {
+                      cvData.references.map((referenceItem, i:number) => {
+                          let reference:string = "reference" + i.toString();
+                          let referenceContact:string = "referenceContact" + i.toString();
+                          
+                          if (referenceItem[reference] !== "") {
+                              return (
+                                  <View style={styles.unit} key={i}>
+                                      <Text style={styles.unitDate}></Text>
+                                      <View style={styles.unitInfo}>
+                                          <Text>{referenceItem[reference]}</Text>
+                                          <Text>{referenceItem[referenceContact]}</Text>
+                                          </View>
+                                      </View>
+                              );
+                          }
+                      })
+                  }
+              </View>
+          </View>
         </Page> 
-      </Document>
-      
+      </Document> */
       );
+      
   }
 

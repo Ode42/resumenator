@@ -321,7 +321,8 @@ export default (props:any) => {
                     })
                 }
                 
-                <Link to={{pathname: "/cv", cvData:cvData }}><button type="submit">Lähetä</button></Link>
+                <input type="submit"/>
+                <Link to={{pathname: "/cv", cvData:cvData }}>Next</Link>
             </div>
                 
             </form>
